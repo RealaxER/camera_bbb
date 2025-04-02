@@ -1,0 +1,4 @@
+sudo hostapd hostapd.conf -B
+sudo ifconfig wlp3s0 192.168.0.1
+sudo udhcpd /etc/udhcpd.conf &
+echo 1 >> /proc/sys/net/ipv4/ip_forward

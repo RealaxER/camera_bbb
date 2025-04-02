@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message ProtoP2p_t {
+    string description = 17;
+    string candidate = 18;
+}
+
+message Transport_t {
+    string mac = 1;
+    repeated ProtoP2p_t p2p = 2;
+}
