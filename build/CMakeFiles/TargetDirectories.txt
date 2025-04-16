@@ -1,0 +1,4 @@
+/home/bhien/work/bbb/camera_stream/build/CMakeFiles/camera_stream.dir
+/home/bhien/work/bbb/camera_stream/build/CMakeFiles/app.dir
+/home/bhien/work/bbb/camera_stream/build/CMakeFiles/edit_cache.dir
+/home/bhien/work/bbb/camera_stream/build/CMakeFiles/rebuild_cache.dir

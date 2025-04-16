@@ -15,19 +15,26 @@ public:
 
         baseStream = baseStreamPtr;
     }
+
+    ~CameraStream() {
+        close(); 
+    }
     
     Result configure();
     Result open();
     Result close();
     Result start(CameraStreamMode mode);
-
     bool doesSupportRecord(){
         return mSupportRecord;
     }
     void setSupportRecord(bool status){
         mSupportRecord = status;
     }
+
+    Result streamLive(std::shared_ptr<P2P> p2p, std::string label);
+    Result streamRecord(std::shared_ptr<P2P> p2p, std::string label);
 private:
+    bool mCameraAvailable = false;
     bool mSupportRecord = false;
     std::unique_ptr<LiveStream> live;  
     std::unique_ptr<RecordStream> record;

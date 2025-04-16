@@ -51,9 +51,8 @@ int Mqtt_t::disconnect() {
 
 int Mqtt_t::publish(const char * topic, const unsigned char * payload, int payload_len) {
     if(this->mosq != nullptr) {
-        mosquitto_publish(this->mosq, NULL, topic, payload_len, payload, 1, false);
         LOG_INFO("--> " << topic << " : " << payload);
-        return 1;
+        return mosquitto_publish(this->mosq, NULL, topic, payload_len, payload, 1, false);
     }
     return -1;
 }

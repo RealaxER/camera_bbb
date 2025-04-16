@@ -147,9 +147,31 @@ class ProtoP2p_t : public ::google::protobuf::Message /* @@protoc_insertion_poin
 
   // accessors -------------------------------------------------------
 
-  // string description = 17;
+  // repeated string candidate = 2;
+  int candidate_size() const;
+  void clear_candidate();
+  static const int kCandidateFieldNumber = 2;
+  const ::std::string& candidate(int index) const;
+  ::std::string* mutable_candidate(int index);
+  void set_candidate(int index, const ::std::string& value);
+  #if LANG_CXX11
+  void set_candidate(int index, ::std::string&& value);
+  #endif
+  void set_candidate(int index, const char* value);
+  void set_candidate(int index, const char* value, size_t size);
+  ::std::string* add_candidate();
+  void add_candidate(const ::std::string& value);
+  #if LANG_CXX11
+  void add_candidate(::std::string&& value);
+  #endif
+  void add_candidate(const char* value);
+  void add_candidate(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& candidate() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_candidate();
+
+  // string description = 1;
   void clear_description();
-  static const int kDescriptionFieldNumber = 17;
+  static const int kDescriptionFieldNumber = 1;
   const ::std::string& description() const;
   void set_description(const ::std::string& value);
   #if LANG_CXX11
@@ -161,26 +183,12 @@ class ProtoP2p_t : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_description();
   void set_allocated_description(::std::string* description);
 
-  // string candidate = 18;
-  void clear_candidate();
-  static const int kCandidateFieldNumber = 18;
-  const ::std::string& candidate() const;
-  void set_candidate(const ::std::string& value);
-  #if LANG_CXX11
-  void set_candidate(::std::string&& value);
-  #endif
-  void set_candidate(const char* value);
-  void set_candidate(const char* value, size_t size);
-  ::std::string* mutable_candidate();
-  ::std::string* release_candidate();
-  void set_allocated_candidate(::std::string* candidate);
-
   // @@protoc_insertion_point(class_scope:ProtoP2p_t)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> candidate_;
   ::google::protobuf::internal::ArenaStringPtr description_;
-  ::google::protobuf::internal::ArenaStringPtr candidate_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_typedef_2eproto::TableStruct;
 };
@@ -319,7 +327,7 @@ class Transport_t : public ::google::protobuf::Message /* @@protoc_insertion_poi
 #endif  // __GNUC__
 // ProtoP2p_t
 
-// string description = 17;
+// string description = 1;
 inline void ProtoP2p_t::clear_description() {
   description_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -372,57 +380,73 @@ inline void ProtoP2p_t::set_allocated_description(::std::string* description) {
   // @@protoc_insertion_point(field_set_allocated:ProtoP2p_t.description)
 }
 
-// string candidate = 18;
+// repeated string candidate = 2;
+inline int ProtoP2p_t::candidate_size() const {
+  return candidate_.size();
+}
 inline void ProtoP2p_t::clear_candidate() {
-  candidate_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  candidate_.Clear();
 }
-inline const ::std::string& ProtoP2p_t::candidate() const {
+inline const ::std::string& ProtoP2p_t::candidate(int index) const {
   // @@protoc_insertion_point(field_get:ProtoP2p_t.candidate)
-  return candidate_.GetNoArena();
+  return candidate_.Get(index);
 }
-inline void ProtoP2p_t::set_candidate(const ::std::string& value) {
-  
-  candidate_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+inline ::std::string* ProtoP2p_t::mutable_candidate(int index) {
+  // @@protoc_insertion_point(field_mutable:ProtoP2p_t.candidate)
+  return candidate_.Mutable(index);
+}
+inline void ProtoP2p_t::set_candidate(int index, const ::std::string& value) {
   // @@protoc_insertion_point(field_set:ProtoP2p_t.candidate)
+  candidate_.Mutable(index)->assign(value);
 }
 #if LANG_CXX11
-inline void ProtoP2p_t::set_candidate(::std::string&& value) {
-  
-  candidate_.SetNoArena(
-    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:ProtoP2p_t.candidate)
+inline void ProtoP2p_t::set_candidate(int index, ::std::string&& value) {
+  // @@protoc_insertion_point(field_set:ProtoP2p_t.candidate)
+  candidate_.Mutable(index)->assign(std::move(value));
 }
 #endif
-inline void ProtoP2p_t::set_candidate(const char* value) {
+inline void ProtoP2p_t::set_candidate(int index, const char* value) {
   GOOGLE_DCHECK(value != NULL);
-  
-  candidate_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  candidate_.Mutable(index)->assign(value);
   // @@protoc_insertion_point(field_set_char:ProtoP2p_t.candidate)
 }
-inline void ProtoP2p_t::set_candidate(const char* value, size_t size) {
-  
-  candidate_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
+inline void ProtoP2p_t::set_candidate(int index, const char* value, size_t size) {
+  candidate_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
   // @@protoc_insertion_point(field_set_pointer:ProtoP2p_t.candidate)
 }
-inline ::std::string* ProtoP2p_t::mutable_candidate() {
-  
-  // @@protoc_insertion_point(field_mutable:ProtoP2p_t.candidate)
-  return candidate_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::std::string* ProtoP2p_t::add_candidate() {
+  // @@protoc_insertion_point(field_add_mutable:ProtoP2p_t.candidate)
+  return candidate_.Add();
 }
-inline ::std::string* ProtoP2p_t::release_candidate() {
-  // @@protoc_insertion_point(field_release:ProtoP2p_t.candidate)
-  
-  return candidate_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline void ProtoP2p_t::add_candidate(const ::std::string& value) {
+  candidate_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:ProtoP2p_t.candidate)
 }
-inline void ProtoP2p_t::set_allocated_candidate(::std::string* candidate) {
-  if (candidate != NULL) {
-    
-  } else {
-    
-  }
-  candidate_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), candidate);
-  // @@protoc_insertion_point(field_set_allocated:ProtoP2p_t.candidate)
+#if LANG_CXX11
+inline void ProtoP2p_t::add_candidate(::std::string&& value) {
+  candidate_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:ProtoP2p_t.candidate)
+}
+#endif
+inline void ProtoP2p_t::add_candidate(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  candidate_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:ProtoP2p_t.candidate)
+}
+inline void ProtoP2p_t::add_candidate(const char* value, size_t size) {
+  candidate_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:ProtoP2p_t.candidate)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+ProtoP2p_t::candidate() const {
+  // @@protoc_insertion_point(field_list:ProtoP2p_t.candidate)
+  return candidate_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+ProtoP2p_t::mutable_candidate() {
+  // @@protoc_insertion_point(field_mutable_list:ProtoP2p_t.candidate)
+  return &candidate_;
 }
 
 // -------------------------------------------------------------------

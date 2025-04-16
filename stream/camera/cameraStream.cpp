@@ -72,3 +72,12 @@ Result CameraStream::close() {
     return Result::SUCCESS;
 }
 
+Result CameraStream::streamLive(std::shared_ptr<P2P> p2p, std::string label) {
+    CAMERA_ASSERT(mState != CameraClosed);
+    return live->stream(p2p, label);
+}
+
+Result CameraStream::streamRecord(std::shared_ptr<P2P> p2p, std::string label) {
+    CAMERA_ASSERT(mState != CameraClosed);
+    return record->stream(p2p, label);
+}

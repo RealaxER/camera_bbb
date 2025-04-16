@@ -8,6 +8,7 @@ extern "C" {
 #include <libswscale/swscale.h>
 #include <libavdevice/avdevice.h>
 #include <libavutil/log.h>  
+#include <libavutil/timestamp.h>
 }
 
 #include <string>
@@ -21,12 +22,13 @@ extern "C" {
 #include <mutex>
 #include <condition_variable>
 
+#include "p2p.h"
 
-#define CAMERA_DEVICE_FILE "/dev/video2"
+
 #define CAMERA_INPUT_FORMAT "v4l2"
 #define CAMERA_RECORD_FORMAT "mpegts"
 #define CAMERA_LIVE_FORMAT "mjpeg"
-#define CAMERA_RECORD_FILE "output.ts"
+#define CAMERA_RECORD_FILE "/home/bhien/output.ts"
 
 #define LOG_TAG_INFO(TAG, MESSAGE)    LOG(INFO) << "[" << TAG << "] " << MESSAGE
 #define LOG_TAG_WARNING(TAG, MESSAGE) LOG(WARNING) << "[" << TAG << "] " << MESSAGE

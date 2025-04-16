@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 message ProtoP2p_t {
-    string description = 17;
-    string candidate = 18;
+    string description = 1;
+    repeated string candidate = 2;
 }
 
 message Transport_t {

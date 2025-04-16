@@ -1,4 +1,5 @@
 #include "recordStream.h"
+#include <fstream>
 
 Result RecordStream::open() {
     uint8_t fps = baseStream->getFps();
@@ -153,6 +154,8 @@ Result RecordStream::close(){
 
 void RecordStream::recordThread() {
     int64_t last_pts = AV_NOPTS_VALUE;  // Track last PTS to ensure monotonic increase
+    std::vector<uint8_t> fileData;
+    const size_t chunkSize = 614400;
 
     while (mRunning) {
         AVPacket* packet = baseStream->packetQueue.pop();  
@@ -179,6 +182,14 @@ void RecordStream::recordThread() {
                         }
 
                         av_interleaved_write_frame(record_format_ctx, packet);
+
+                        // if (mP2P) {
+                        //     if (!transport->streamBuffereToChannel(mLabel, packet->data, packet->size)) {
+                        //         LOG(ERROR) << "Failed to send file data over DataChannel";
+                        //     } else {
+                        //         LOG(INFO) << "[Sent " << packet->size << " bytes of file data to server]";
+                        //     }
+                        // }
                         av_packet_unref(packet);
                     }
                 }
@@ -186,4 +197,14 @@ void RecordStream::recordThread() {
             av_packet_unref(packet);
         }
     }
+}
+
+Result RecordStream::stream(std::shared_ptr<P2P> p2p, std::string label) {
+    CAMERA_ASSERT(mState != CameraClosed);
+    
+    transport = p2p;
+    mLabel = label;
+    mP2P = true;
+
+    return Result::SUCCESS;
 }

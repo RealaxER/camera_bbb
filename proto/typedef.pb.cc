@@ -117,7 +117,7 @@ void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\rtypedef.proto\"4\n\nProtoP2p_t\022\023\n\013descrip"
-      "tion\030\021 \001(\t\022\021\n\tcandidate\030\022 \001(\t\"4\n\013Transpo"
+      "tion\030\001 \001(\t\022\021\n\tcandidate\030\002 \003(\t\"4\n\013Transpo"
       "rt_t\022\013\n\003mac\030\001 \001(\t\022\030\n\003p2p\030\002 \003(\0132\013.ProtoP2"
       "p_tb\006proto3"
   };
@@ -157,22 +157,18 @@ ProtoP2p_t::ProtoP2p_t()
 }
 ProtoP2p_t::ProtoP2p_t(const ProtoP2p_t& from)
   : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
+      _internal_metadata_(NULL),
+      candidate_(from.candidate_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   description_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.description().size() > 0) {
     description_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.description_);
-  }
-  candidate_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.candidate().size() > 0) {
-    candidate_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.candidate_);
   }
   // @@protoc_insertion_point(copy_constructor:ProtoP2p_t)
 }
 
 void ProtoP2p_t::SharedCtor() {
   description_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  candidate_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 ProtoP2p_t::~ProtoP2p_t() {
@@ -182,7 +178,6 @@ ProtoP2p_t::~ProtoP2p_t() {
 
 void ProtoP2p_t::SharedDtor() {
   description_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  candidate_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void ProtoP2p_t::SetCachedSize(int size) const {
@@ -205,8 +200,8 @@ void ProtoP2p_t::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  candidate_.Clear();
   description_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  candidate_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   _internal_metadata_.Clear();
 }
 
@@ -216,14 +211,14 @@ bool ProtoP2p_t::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:ProtoP2p_t)
   for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // string description = 17;
-      case 17: {
+      // string description = 1;
+      case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(138u /* 138 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_description()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -236,14 +231,15 @@ bool ProtoP2p_t::MergePartialFromCodedStream(
         break;
       }
 
-      // string candidate = 18;
-      case 18: {
+      // repeated string candidate = 2;
+      case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(146u /* 146 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_candidate()));
+                input, this->add_candidate()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->candidate().data(), static_cast<int>(this->candidate().length()),
+            this->candidate(this->candidate_size() - 1).data(),
+            static_cast<int>(this->candidate(this->candidate_size() - 1).length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "ProtoP2p_t.candidate"));
         } else {
@@ -278,24 +274,24 @@ void ProtoP2p_t::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string description = 17;
+  // string description = 1;
   if (this->description().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->description().data(), static_cast<int>(this->description().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "ProtoP2p_t.description");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      17, this->description(), output);
+      1, this->description(), output);
   }
 
-  // string candidate = 18;
-  if (this->candidate().size() > 0) {
+  // repeated string candidate = 2;
+  for (int i = 0, n = this->candidate_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->candidate().data(), static_cast<int>(this->candidate().length()),
+      this->candidate(i).data(), static_cast<int>(this->candidate(i).length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "ProtoP2p_t.candidate");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      18, this->candidate(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->candidate(i), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -312,7 +308,7 @@ void ProtoP2p_t::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string description = 17;
+  // string description = 1;
   if (this->description().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->description().data(), static_cast<int>(this->description().length()),
@@ -320,18 +316,17 @@ void ProtoP2p_t::SerializeWithCachedSizes(
       "ProtoP2p_t.description");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        17, this->description(), target);
+        1, this->description(), target);
   }
 
-  // string candidate = 18;
-  if (this->candidate().size() > 0) {
+  // repeated string candidate = 2;
+  for (int i = 0, n = this->candidate_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->candidate().data(), static_cast<int>(this->candidate().length()),
+      this->candidate(i).data(), static_cast<int>(this->candidate(i).length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "ProtoP2p_t.candidate");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        18, this->candidate(), target);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(2, this->candidate(i), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -351,18 +346,19 @@ size_t ProtoP2p_t::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // string description = 17;
-  if (this->description().size() > 0) {
-    total_size += 2 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->description());
+  // repeated string candidate = 2;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->candidate_size());
+  for (int i = 0, n = this->candidate_size(); i < n; i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->candidate(i));
   }
 
-  // string candidate = 18;
-  if (this->candidate().size() > 0) {
-    total_size += 2 +
+  // string description = 1;
+  if (this->description().size() > 0) {
+    total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->candidate());
+        this->description());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -392,13 +388,10 @@ void ProtoP2p_t::MergeFrom(const ProtoP2p_t& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  candidate_.MergeFrom(from.candidate_);
   if (from.description().size() > 0) {
 
     description_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.description_);
-  }
-  if (from.candidate().size() > 0) {
-
-    candidate_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.candidate_);
   }
 }
 
@@ -426,9 +419,8 @@ void ProtoP2p_t::Swap(ProtoP2p_t* other) {
 }
 void ProtoP2p_t::InternalSwap(ProtoP2p_t* other) {
   using std::swap;
+  candidate_.InternalSwap(CastToBase(&other->candidate_));
   description_.Swap(&other->description_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-    GetArenaNoVirtual());
-  candidate_.Swap(&other->candidate_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
