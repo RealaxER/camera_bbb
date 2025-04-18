@@ -1,6 +1,29 @@
 
 #include <p2p.h>
 
+
+std::string GatheringStateToString(rtc::PeerConnection::GatheringState state) {
+    switch (state) {
+        case rtc::PeerConnection::GatheringState::New: return "New";
+        case rtc::PeerConnection::GatheringState::InProgress: return "InProgress";
+        case rtc::PeerConnection::GatheringState::Complete: return "Complete";
+        default: return "Unknown";
+    }
+}
+
+std::string StateToString(rtc::PeerConnection::State state) {
+    switch (state) {
+        case rtc::PeerConnection::State::New: return "New";
+        case rtc::PeerConnection::State::Connecting: return "Connecting";
+        case rtc::PeerConnection::State::Connected: return "Connected";
+        case rtc::PeerConnection::State::Disconnected: return "Disconnected";
+        case rtc::PeerConnection::State::Failed: return "Failed";
+        case rtc::PeerConnection::State::Closed: return "Closed";
+        default: return "Unknown";
+    }
+}
+
+
 void P2P::SetStunServer(const std::string& stun_server) {
     config.iceServers.emplace_back(stun_server);
 }
@@ -174,25 +197,4 @@ void P2P::HandleIncomingDataChannel() {
             }
         });
     });
-}
-
-std::string GatheringStateToString(rtc::PeerConnection::GatheringState state) {
-    switch (state) {
-        case rtc::PeerConnection::GatheringState::New: return "New";
-        case rtc::PeerConnection::GatheringState::InProgress: return "InProgress";
-        case rtc::PeerConnection::GatheringState::Complete: return "Complete";
-        default: return "Unknown";
-    }
-}
-
-std::string StateToString(rtc::PeerConnection::State state) {
-    switch (state) {
-        case rtc::PeerConnection::State::New: return "New";
-        case rtc::PeerConnection::State::Connecting: return "Connecting";
-        case rtc::PeerConnection::State::Connected: return "Connected";
-        case rtc::PeerConnection::State::Disconnected: return "Disconnected";
-        case rtc::PeerConnection::State::Failed: return "Failed";
-        case rtc::PeerConnection::State::Closed: return "Closed";
-        default: return "Unknown";
-    }
 }
