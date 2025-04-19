@@ -247,7 +247,7 @@ void LiveStream::liveThread() {
                             packet->pts = packet->dts;
                         }
                         //LOG(INFO) << "[Revice packet size: " << packet->size << " pts:" << packet->pts << " dts:" << packet->dts << "]";
-                        log_packet_tb(&encoder_ctx->time_base, packet);
+                        //log_packet_tb(&encoder_ctx->time_base, packet);
                         if (output_file) {
                             uint8_t *buffer = (uint8_t *)malloc(packet->size);
                             if (buffer) {
@@ -258,6 +258,14 @@ void LiveStream::liveThread() {
                                 LOG(ERROR) << "Failed to allocate memory for buffer!";
                             }
                         }
+
+                        if (mP2P) {
+                            std::vector<uint8_t> packet_copy(packet->data, packet->data + packet->size);
+                            if (!transport->streamBuffereToChannel(mLabel, packet_copy.data(), packet_copy.size())) {
+                                LOG(ERROR) << "Failed to send file data over DataChannel";
+                            }
+                        }
+
                         av_packet_unref(packet);
                     }
                 }

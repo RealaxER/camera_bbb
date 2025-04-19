@@ -11,7 +11,7 @@
 #define MAX_MESSAGE 1048576
 
 #define DEVICE_NAME "app-stream"
-#define BROKER "test.mosquitto.org"
+#define BROKER "broker.emqx.io"
 #define PORT 1883
 
 #define SUB "server/live/+"

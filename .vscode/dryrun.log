@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/bhien/work/bbb/camera_stream'
+g++ -g -o audio audio.cpp -lavformat -lavcodec -lavfilter -lavdevice -lswscale -lavutil -lglog -pthread -lswresample -lm
+./audio
+make: Leaving directory '/home/bhien/work/bbb/camera_stream'
+ 

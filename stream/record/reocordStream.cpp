@@ -183,13 +183,13 @@ void RecordStream::recordThread() {
 
                         av_interleaved_write_frame(record_format_ctx, packet);
 
-                        // if (mP2P) {
-                        //     if (!transport->streamBuffereToChannel(mLabel, packet->data, packet->size)) {
-                        //         LOG(ERROR) << "Failed to send file data over DataChannel";
-                        //     } else {
-                        //         LOG(INFO) << "[Sent " << packet->size << " bytes of file data to server]";
-                        //     }
-                        // }
+                        if (mP2P) {
+                            if (!transport->streamBuffereToChannel(mLabel, packet->data, packet->size)) {
+                                LOG(ERROR) << "Failed to send file data over DataChannel";
+                            } else {
+                                LOG(INFO) << "[Sent " << packet->size << " bytes of file data to server]";
+                            }
+                        }
                         av_packet_unref(packet);
                     }
                 }
